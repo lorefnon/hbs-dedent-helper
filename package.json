@@ -8,6 +8,15 @@
   "files": [
     "dist"
   ],
+  "author": {
+    "name": "Lorefnon",
+    "email": "lorefnon@tutanota.com",
+    "url": "https://lorefnon.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lorefnon/hbs-dedent-helper"
+  },
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
