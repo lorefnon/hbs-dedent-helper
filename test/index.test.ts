@@ -103,4 +103,48 @@ describe('dedent-by', () => {
               "
     `);
   });
+
+  describe('base-indent', () => {
+    it('updates the minimum indent to base indent', () => {
+      const sampleTemplate = `
+            if (foo) {
+                {{#base-indent 4 "space"}}
+                      {{#each items}}
+                          console.log('{{.}}')
+                      {{/each}}
+                {{/base-indent}}
+            }
+          `;
+      const result = Handlebars.compile(sampleTemplate)({
+        items: ['a', 'b'],
+      });
+      expect(result).toMatchInlineSnapshot(`
+        "
+                    if (foo) {
+            console.log('a')
+            console.log('b')
+                    }
+                  "
+      `);
+    });
+  });
+
+  describe('trim-trailing-whitespace', () => {
+    it('removes trailing whitespace', () => {
+      const sampleTemplate = `
+      {{#trim-trailing-whitespace}}
+      foo
+      bar${` `}
+      baz${'\t\t\t'}
+      {{/trim-trailing-whitespace}}`;
+      const result = Handlebars.compile(sampleTemplate)({});
+      expect(result).toMatchInlineSnapshot(`
+        "
+              foo
+              bar
+              baz
+        "
+      `);
+    });
+  });
 });

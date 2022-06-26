@@ -1,6 +1,6 @@
 # Handlebars dedent helper
 
-A simple handlebars helper to dedent blocks of text in handlebars. 
+A set of simple handlebars helpers to help with indentation
 
 Very often, when using block helpers our code would end up nested more than it should be. Which can be problematic for code-generators:
 
@@ -23,7 +23,7 @@ if (foo) {
 
 This is visually unappealing. In addition, for indentation sensitve languages this can break the code.
 
-To solve this we provide two helpers: 
+To solve this we provide following helpers: 
 
 1. `dedent` helper: 
 
@@ -82,6 +82,32 @@ if (foo) {
     {{/dedent-by}}
 }
 ```
+
+3. `base-indent` helper:
+
+(Changes the minimum indentation of all lines in the contained block, while retaining relative indentation)
+
+```
+if (foo) {
+    {{#base-indent 1 "level"}}
+        {{#each items}}
+            console.log('{{.}}')
+        {{/each}}
+    {{/base-indent}}
+}
+```
+
+```
+if (foo) {
+    console.log(1)
+}
+```
+
+This is particularly useful when including other templates in a base template.
+
+4. `trim-trailing-whitespace` helper:
+
+(Removes all trailing whitespace in generated output)
 
 # Installation
 
