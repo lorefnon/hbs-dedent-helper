@@ -41,12 +41,11 @@ export function register() {
   Handlebars.registerHelper('dedent-by', function dedentBy(
     this: any,
     count: number,
-    unit: string,
+    unit: string | null | undefined,
     options: Handlebars.HelperOptions
   ) {
     assert(typeof count === 'number', 'Expected count to be a number');
-    assert(typeof unit === 'string', 'Expected unit to be a string');
-    return dedentHelper.apply(this, [count, unit, options]);
+    return dedentHelper.apply(this, [count, unit || 'level', options]);
   });
   Handlebars.registerHelper('dedent', function dedent(
     this: any,
